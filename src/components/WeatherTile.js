@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function WeatherTile({ temp, feels_like, main, date, iconURL }) {
+const WeatherTile = ({ temp, feels_like, main, date, iconURL }) => {
 	const day = date.substring(0, 3),
 		time = date.substring(15, 24);
 
@@ -20,7 +20,7 @@ function WeatherTile({ temp, feels_like, main, date, iconURL }) {
 			</div>
 		</Link>
 	);
-}
+};
 
 WeatherTile.propsTypes = {
 	temp        : PropTypes.number,

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuid_v4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 
 import WeatherTile from './WeatherTile.js';
+import { getIconURL } from '../utils.js';
 
 import '../styles/WeatherTile.css';
 import '../styles/Weather.css';
 
-function WeatherHourly({ match }) {
+const WeatherHourly = () => {
+	const { day_name } = useParams();
 	const [ dailyWeather, updateWeather ] = useState([]);
-
-	const KEY = 'c2126ddbad599441b6b459bc90a0ec70',
-		BASE_ICON_URL = 'http://openweathermap.org/img/wn/';
 
 	useEffect(
 		() => {
@@ -26,25 +26,24 @@ function WeatherHourly({ match }) {
 						iconURL    : getIconURL(day.weather[0].icon)
 					};
 					// show only weather for day that we clicked on
-					if (oneDayWeather.date.substring(0, 3) === match.params.day_name) {
+					if (oneDayWeather.date.substring(0, 3) === day_name) {
 						weatherData.push(oneDayWeather);
 					}
 				});
 
 				return weatherData;
 			};
-			const URL = `https://api.openweathermap.org/data/2.5/forecast?id=524901&units=metric&appid=${KEY}`;
+
+			const URL = `https://api.openweathermap.org/data/2.5/forecast?id=524901&units=metric&appid=${process.env
+				.REACT_APP_API_KEY_HOURLY_WEATHER}`;
+
 			axios.get(URL).then((res) => {
 				let weatherData = extractWeatherData(res.data);
 				updateWeather(weatherData);
 			});
 		},
-		[ match.params.day_name ]
+		[ day_name ]
 	);
-
-	const getIconURL = (iconID) => {
-		return `${BASE_ICON_URL}${iconID}@4x.png`;
-	};
 
 	return (
 		<div className='container'>
@@ -63,6 +62,6 @@ function WeatherHourly({ match }) {
 			})}
 		</div>
 	);
-}
+};
 
 export default WeatherHourly;

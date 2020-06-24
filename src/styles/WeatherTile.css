@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400&display=swap');
-
 .weather-tile {
-	font-family: 'Merriweather Sans', sans-serif;
 	width: 360px;
 	height: 350px;
 	border-radius: 3%;
 	margin: 10px 20px;
 	text-align: center;
-	color: white;
+	color: #f9f6f7;
 	margin: 1rem;
 	background: #4e54c8;
 	background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);

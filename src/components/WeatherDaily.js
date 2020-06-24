@@ -3,15 +3,13 @@ import axios from 'axios';
 import { v4 as uuid_v4 } from 'uuid';
 
 import WeatherTile from './WeatherTile.js';
+import { getIconURL } from '../utils.js';
 
 import '../styles/WeatherTile.css';
 import '../styles/Weather.css';
 
-function WeatherDaily() {
+const WeatherDaily = () => {
 	const [ dailyWeather, updateWeather ] = useState([]);
-
-	const KEY = '886705b4c1182eb1c69f28eb8c520e20',
-		BASE_ICON_URL = 'http://openweathermap.org/img/wn/';
 
 	useEffect(() => {
 		const extractWeatherData = (data) => {
@@ -31,16 +29,14 @@ function WeatherDaily() {
 			return weatherData;
 		};
 
-		const URL = `http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&units=metric&appid=${KEY}`;
+		const URL = `http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&units=metric&appid=${process.env
+			.REACT_APP_API_KEY_DAILY_WEATHER}`;
+
 		axios.get(URL).then((res) => {
 			let weatherData = extractWeatherData(res.data);
 			updateWeather(weatherData);
 		});
 	}, []);
-
-	const getIconURL = (iconID) => {
-		return `${BASE_ICON_URL}${iconID}@4x.png`;
-	};
 
 	return (
 		<div className='container'>
@@ -59,6 +55,6 @@ function WeatherDaily() {
 			})}
 		</div>
 	);
-}
+};
 
 export default WeatherDaily;

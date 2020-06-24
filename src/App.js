@@ -6,7 +6,7 @@ import './App.css';
 import WeatherDaily from './components/WeatherDaily.js';
 import WeatherHourly from './components/WeatherHourly.js';
 
-function App() {
+const App = () => {
 	return (
 		<div>
 			<Router>
@@ -17,6 +17,6 @@ function App() {
 			</Router>
 		</div>
 	);
-}
+};
 
 export default App;
