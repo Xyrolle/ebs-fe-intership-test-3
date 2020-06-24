@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400&display=swap');
+
+.weather-tile {
+	font-family: 'Merriweather Sans', sans-serif;
+	width: 360px;
+	height: 350px;
+	border-radius: 3%;
+	margin: 10px 20px;
+	text-align: center;
+	color: white;
+	margin: 1rem;
+	background: #4e54c8;
+	background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);
+	background: linear-gradient(to right, #8f94fb, #4e54c8);
+	font-size: 1.2rem;
+	-webkit-box-shadow: -4px 7px 13px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: -4px 7px 13px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: -4px 7px 13px 0px rgba(50, 50, 50, 0.75);
+	transition: all .2s ease-in-out;
+}
+
+.weather-tile:hover {
+	transform: scale(1.05);
+}
+
+.day {
+	padding-top: 1rem;
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.main {
+	padding: 3px 0;
+	font-weight: 500;
+}
+
+a:-webkit-any-link {
+	text-decoration: none;
+	color: inherit;
+}
+
+span {
+	display: block;
+}
