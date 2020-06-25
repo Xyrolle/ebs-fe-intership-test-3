@@ -25,6 +25,7 @@ const WeatherHourly = () => {
 						date       : new Date(day.dt * 1000).toString(),
 						iconURL    : getIconURL(day.weather[0].icon)
 					};
+
 					const current_day = oneDayWeather.date.substring(0, 3);
 					if (day_name && current_day === day_name) {
 						weatherData.push(oneDayWeather);
