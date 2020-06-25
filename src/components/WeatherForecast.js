@@ -41,10 +41,15 @@ const WeatherForecast = () => {
 			const URL = `https://api.openweathermap.org/data/2.5/forecast?id=524901&units=metric&appid=${process.env
 				.REACT_APP_API_KEY_WEATHER}`;
 
-			axios.get(URL).then((res) => {
-				let weatherData = extractWeatherData(res.data);
-				updateWeather(weatherData);
-			});
+			axios
+				.get(URL)
+				.then((res) => {
+					let weatherData = extractWeatherData(res.data);
+					updateWeather(weatherData);
+				})
+				.catch((err) => {
+					console.error(err);
+				});
 		},
 		[ day_name ]
 	);
