@@ -16,7 +16,7 @@ const WeatherForecast = () => {
 		() => {
 			const extractWeatherData = (data) => {
 				const weatherData = [],
-					daysAdded = {};
+					daysAdded = new Set();
 				data.list.forEach((day) => {
 					let oneDayWeather = {
 						main       : day.weather[0].main,
@@ -29,9 +29,9 @@ const WeatherForecast = () => {
 					const current_day = oneDayWeather.date.substring(0, 3);
 					if (day_name && current_day === day_name) {
 						weatherData.push(oneDayWeather);
-					} else if (!day_name && !(current_day in daysAdded)) {
+					} else if (!day_name && !daysAdded.has(current_day)) {
 						weatherData.push(oneDayWeather);
-						daysAdded[current_day] = 1;
+						daysAdded.add(current_day);
 					}
 				});
 
