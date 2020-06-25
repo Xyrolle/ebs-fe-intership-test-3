@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import '../styles/WeatherTile.css';
+
 const WeatherTile = ({ temp, feels_like, main, date, iconURL }) => {
 	const day = date.substring(0, 3),
 		time = date.substring(15, 24);

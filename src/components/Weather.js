@@ -6,17 +6,17 @@ import { useParams } from 'react-router-dom';
 import WeatherTile from './WeatherTile.js';
 import { getIconURL } from '../utils.js';
 
-import '../styles/WeatherTile.css';
 import '../styles/Weather.css';
 
 const WeatherHourly = () => {
 	const { day_name } = useParams();
-	const [ dailyWeather, updateWeather ] = useState([]);
+	const [ weather, updateWeather ] = useState([]);
 
 	useEffect(
 		() => {
 			const extractWeatherData = (data) => {
-				let weatherData = [];
+				const weatherData = [],
+					daysAdded = {};
 				data.list.forEach((day) => {
 					let oneDayWeather = {
 						main       : day.weather[0].main,
@@ -25,9 +25,12 @@ const WeatherHourly = () => {
 						date       : new Date(day.dt * 1000).toString(),
 						iconURL    : getIconURL(day.weather[0].icon)
 					};
-					// show only weather for day that we clicked on
-					if (oneDayWeather.date.substring(0, 3) === day_name) {
+					const current_day = oneDayWeather.date.substring(0, 3);
+					if (day_name && current_day === day_name) {
 						weatherData.push(oneDayWeather);
+					} else if (!day_name && !(current_day in daysAdded)) {
+						weatherData.push(oneDayWeather);
+						daysAdded[current_day] = 1;
 					}
 				});
 
@@ -35,7 +38,7 @@ const WeatherHourly = () => {
 			};
 
 			const URL = `https://api.openweathermap.org/data/2.5/forecast?id=524901&units=metric&appid=${process.env
-				.REACT_APP_API_KEY_HOURLY_WEATHER}`;
+				.REACT_APP_API_KEY_WEATHER}`;
 
 			axios.get(URL).then((res) => {
 				let weatherData = extractWeatherData(res.data);
@@ -47,7 +50,7 @@ const WeatherHourly = () => {
 
 	return (
 		<div className='container'>
-			{dailyWeather.map((day) => {
+			{weather.map((day) => {
 				return (
 					<WeatherTile
 						main={day.main}
