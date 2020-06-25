@@ -8,7 +8,7 @@ import { getIconURL } from '../utils.js';
 
 import '../styles/Weather.css';
 
-const WeatherHourly = () => {
+const WeatherForecast = () => {
 	const { day_name } = useParams();
 	const [ weather, updateWeather ] = useState([]);
 
@@ -68,4 +68,4 @@ const WeatherHourly = () => {
 	);
 };
 
-export default WeatherHourly;
+export default WeatherForecast;
