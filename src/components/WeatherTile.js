@@ -4,12 +4,18 @@ import PropTypes from 'prop-types';
 
 import '../styles/WeatherTile.css';
 
-const WeatherTile = ({ temp, feels_like, main, date, iconURL }) => {
+const WeatherTile = ({ temp, feels_like, main, date, iconURL, day_name }) => {
 	const day = date.substring(0, 3),
 		time = date.substring(15, 24);
 
 	return (
-		<Link to={`/${day}`}>
+		<Link
+			onClick={(e) =>
+
+					day_name !== undefined ? e.preventDefault() :
+					''}
+			to={`/${day}`}
+		>
 			<div className='weather-tile'>
 				<div className='day'>{day}</div>
 				<img src={iconURL} alt='weather-img' />
@@ -29,7 +35,8 @@ WeatherTile.propTypes = {
 	main        : PropTypes.string,
 	description : PropTypes.string,
 	date        : PropTypes.string,
-	iconURL     : PropTypes.string
+	iconURL     : PropTypes.string,
+	day_name    : PropTypes.string
 };
 
 export default WeatherTile;

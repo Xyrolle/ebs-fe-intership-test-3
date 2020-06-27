@@ -14,6 +14,7 @@ const WeatherForecast = () => {
 
 	useEffect(
 		() => {
+			console.log('useeffect');
 			const extractWeatherData = (data) => {
 				const weatherData = [],
 					daysAdded = new Set();
@@ -65,6 +66,7 @@ const WeatherForecast = () => {
 						feels_like={day.feels_like}
 						date={day.date}
 						iconURL={day.iconURL}
+						day_name={day_name}
 						key={uuid_v4()}
 					/>
 				);
