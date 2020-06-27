@@ -10,9 +10,9 @@ const WeatherTile = ({ temp, feels_like, main, date, iconURL, day_name }) => {
 
 	return (
 		<Link
-			onClick={(e) =>
+			onClick={(evt) =>
 
-					day_name !== undefined ? e.preventDefault() :
+					day_name !== undefined ? evt.preventDefault() :
 					''}
 			to={`/${day}`}
 		>
