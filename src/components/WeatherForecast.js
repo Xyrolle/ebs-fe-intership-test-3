@@ -14,7 +14,6 @@ const WeatherForecast = () => {
 
 	useEffect(
 		() => {
-			console.log('useeffect');
 			const extractWeatherData = (data) => {
 				const weatherData = [],
 					daysAdded = new Set();
